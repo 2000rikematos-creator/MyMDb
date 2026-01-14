@@ -1,0 +1,32 @@
+<%- include('partials/header') %>
+<main class="content">
+<div class="movieSearchContainer">
+    <div class="posterContainer">
+<img class="moviePoster poster-image" src= <%= info.Poster %> alt="image cover">
+    </div>
+    <div class="movieInfo">
+<div class="movieData">
+    <p class="year"> Year: <%= info.Year %> </p>
+    <p class="rating"> IMDB rating: <%= info.imdbRating %> </p>
+    <p class="director"> Director: <%= info.Director %> </p>
+    <p class="runtime"> Runtime: <%= info.Runtime %> </p>
+    <p class="actors"> Actors: <%= info.Actors %> </p>
+    <p class="plot"> Director: <%= info.Plot %> </p>
+
+
+</div>
+<div class="movieReview">
+<form class="review-input" action="update-review" method="post">
+    <input  type="hidden" name="movieId" value= <%= review.id %>>
+    <textarea class="text-box review-input-text" name="review" autofocus> <%= review.user_review %> </textarea>
+    <textarea class="text-box username-input" name="username"> <%= review.user_name %> </textarea>
+    <input class="button box-button" type="submit">
+
+</form>
+</div>
+    </div>
+
+    </div>
+</main>
+
+<%- include('partials/footer') %>

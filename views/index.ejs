@@ -1,0 +1,54 @@
+<%- include("partials/header")%>
+
+<main class="content">
+    <div class="header">
+        <div class="logo"> 
+            <img class="logo-image" src="/assets/images/logo.png" alt="Logo"> 
+        </div>
+        <div class="search-bar">
+    <form class="add-movie" action="/add-movie" method="post">
+    <input class="button add-movie-button" type="submit" value="Add">
+    </form>
+</div>
+    </div>
+
+    
+    
+
+<%if (locals.movies){%>
+<% movies.forEach(movie => {%>
+     <div class="movie">
+        <div class="poster">
+            <img class="poster-image" src=<%= movie.poster %>  alt = "poster image">
+        </div>
+
+        <div class="description">
+            <div class="movie-info">
+                 <p> Title: <%=movie.title%> </p>
+            <p> Year: <%=movie.year%> </p>
+            <p> "<%=movie.user_review %>"</p>
+            <p> <%=movie.user_name%> </p>
+            </div>
+             <div class="buttons">
+            <form class="edit-review" action="edit-review" method="post">
+                <input type="hidden" name="id" value= <%= movie.id %> >
+                <input class="button box-button edit-button" type="submit" value= "Edit review">
+            </form>
+            <form class="delete-review" action="delete-review" method="post">
+                <input type="hidden" name="id" value= <%= movie.id %> >
+                <input class="button box-button delete-button" type="submit" value= "Delete review">
+            </form>
+        </div>
+        </div>
+       
+    </div>
+<%});%>
+<%}%>
+
+<div class="footer"> 
+    <%- include('partials/footer') %>
+</div>
+</main>
+
+    
+

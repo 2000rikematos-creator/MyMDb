@@ -1,0 +1,52 @@
+<%- include('partials/header') %>
+<main class="content">
+    <form class="select-movie" action="/select-movie" method="post">
+        <input class="search-movie" type="text" name="movieName"
+         <% if (locals.error){ %>
+        placeholder= '<%= error %>'
+    <%}else{%>
+         placeholder="Insert movie name"   
+    <%}%>
+    >
+        <input class="button box-button" type="submit" value="Search">
+
+    </form>
+    <% if (locals.result){ %>
+<div class="movieSearchContainer">
+    <div class="posterContainer">
+<img class="moviePoster poster-image" src= <%= poster %> alt="image cover">
+    </div>
+    <div class="movieInfo">
+<div class="movieData">
+    <p class="year"> Year: <%= result.Year %> </p>
+    <p class="rating"> IMDB rating: <%= result.imdbRating %> </p>
+    <p class="director"> Director: <%= result.Director %> </p>
+    <p class="runtime"> Runtime: <%= result.Runtime %> </p>
+    <p class="actors"> Actors: <%= result.Actors %> </p>
+    <p class="plot"> Director: <%= result.Plot %> </p>
+
+
+</div>
+
+
+    <div class="movieReview">
+<form class="review-input" action="post-review" method="post">
+    <input type="hidden" name="movieId" value= <%= result.imdbID %>>
+    <textarea class="text-box review-input-text" name="review" autofocus></textarea>
+    <textarea class="text-box username-input" name="username"></textarea>
+    <input class="button box-button" type="submit">
+
+</form>
+</div>
+
+
+
+    </div>
+
+    </div>
+
+
+ 
+    <%}%>
+</main>
+<%- include('partials/footer') %>
